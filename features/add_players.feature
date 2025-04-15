@@ -6,18 +6,19 @@ Feature: Lägg till namn på spelare
 
   Scenario Outline: Lägg till två spelare
     Given spelaren är på startsidan
-    When spelaren skriver "<player1>" som första spelaren
-    And spelaren skriver "<player2>" som andra spelaren
-    And spelaren klickar på "Lägg till spelare"
-    Then "<player1>" visas på sidan med texten "0:00.0"
-    And "<player2>" visas på sidan med texten "0:00.0"
+    When spelaren klickar på knappen "Lägg till spelare"
+    And spelaren skriver "<name1>" i textfältet
+    And spelaren klickar på knappen "Lägg till spelare"
+    Then "<name1>" dyker upp på sidan med texten "0:00.0"
+    When spelaren skriver "<name2>" i textfältet
+    And spelaren klickar på knappen "Lägg till spelare"
+    Then "<name2>" dyker upp på sidan med texten "0:00.0"
     Examples:
-      | player1 | player2 |
-      | Ana     | Bob     |
-      | Maria   | Alex    |
+      | name1 | name2 |
+      | Ana   | Bob   |
+      | Maria | Alex  |
 
-  Scenario: Försök att lägga till fără namn
+  Scenario: Försök att lägga till utan namn
     Given spelaren är på startsidan
-    When spelaren klickar på "Lägg till spelare"
-    Then ett felmeddelande visas
-
+    When spelaren klickar på knappen "Lägg till spelare"
+    Then ingen spelare tillagd
