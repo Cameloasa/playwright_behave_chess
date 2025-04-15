@@ -18,6 +18,9 @@ def before_scenario(context, scenario):
     print(f"DEBUG: Starting scenario '{scenario.name}'")
     context.page = context.browser.new_page()
     print(f"DEBUG: New page created, base_url={context.base_url}")
+    # stabilize the page
+    context.page.set_default_timeout(5000)  # 5s for all actions
+    context.page.wait_for_load_state("domcontentloaded")
 
 def after_scenario(context, scenario):
     if context.page:
