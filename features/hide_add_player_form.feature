@@ -8,7 +8,7 @@ Feature: Dölja formuläret som visas lägg till spelare
   Scenario: Dölja formuläret
     Given spelaren är på startsidan
     And knappen "Lägg till spelare" är synlig
-    When spelaren klickar pe knappen "Lägg till spelare"
+    When spelaren klickar på knappen "Lägg till spelare"
     Then formuläret för att lägga till spelare visas
     When spelaren klickar pe knappen "Dölj"
     Then formuläret för att lägga till spelare inte visas
