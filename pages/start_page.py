@@ -1,4 +1,5 @@
 import re
+import time
 
 class StartPage:
     def __init__(self, page):
@@ -35,4 +36,25 @@ class StartPage:
     def get_players(self):
         """Return the locator for all player elements."""
         return self.page.locator(".player")
+
+    def start_your_move(self):
+        """Click the start your move button."""
+        self.page.get_by_role("button").get_by_text("Börja ditt drag").click()
+
+    def get_active_move_button(self):
+        """Return the button used to start/hand over the move (its text changes)."""
+        return self.page.get_by_role("button", name=re.compile(r"Börja ditt drag|Överlämna till .+"))
+
+    def get_player_timer_element(self, name):
+        """Return the <code> element (timer) for the player with the given name."""
+        player_section = self.page.locator("section.large", has_text=name)
+        return player_section.locator("code")
+
+    def is_timer_running_for_player(self, name):
+        """Return True if the timer for the given player is increasing."""
+        timer_element = self.get_player_timer_element(name)
+        initial_time = timer_element.inner_text()
+        time.sleep(1.5)
+        updated_time = timer_element.inner_text()
+        return initial_time != updated_time
 

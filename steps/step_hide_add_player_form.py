@@ -1,6 +1,6 @@
 from behave import given, when, then
 from playwright.sync_api import expect
-from pages.start_page import StartPage
+
 
 @given(u'knappen "Lägg till spelare" är synlig')
 def step_given_add_button_is_visible(context):
