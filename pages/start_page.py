@@ -10,7 +10,12 @@ class StartPage:
 
     def fill_player_name(self, name):
         """Fill the player name in the input field."""
-        self.page.locator("#player-name").fill(name)
+        self.page.get_by_role("textbox").fill(name)
+
+    def is_add_button_visible(self):
+        """Return the locator for the add player button."""
+        return self.page.get_by_role("button").get_by_text("Lägg till spelare")
+
 
     def get_player(self, name):
         """Return the locator for a player with the given name and timer."""
