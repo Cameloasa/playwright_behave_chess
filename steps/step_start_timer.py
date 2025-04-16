@@ -45,6 +45,7 @@ def step_when_player_clicks_give_turn_to(context, name):
     button = context.start_page.get_active_move_button()
     button.click()
 
+#TODO
 @then(u'timern för "{name}" slutar räkna')
 def step_then_timer_stops_for_player(context, name):
     assert not context.start_page.is_timer_running_for_player(name), f"Timern för {name} räknar fortfarande!"
