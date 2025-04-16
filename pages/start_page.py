@@ -21,10 +21,6 @@ class StartPage:
         pattern = re.compile(name + r"\s+0:00\.0")
         return self.page.locator(".player").get_by_text(pattern)
 
-    def get_players(self):
-        """Return the locator for all player elements."""
-        return self.page.locator(".player")
-
     def get_form_elements(self):
         """Return the label and input field for the add player form (those that toggle visibility)."""
         name_regex = re.compile("Nya spelarens namn", re.IGNORECASE)
@@ -35,4 +31,8 @@ class StartPage:
     def click_hide_button(self):
         """Click the hide form button."""
         self.page.get_by_role("button").get_by_text("Dölj").click()
+
+    def get_players(self):
+        """Return the locator for all player elements."""
+        return self.page.locator(".player")
 
