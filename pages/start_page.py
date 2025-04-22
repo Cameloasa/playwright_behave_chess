@@ -61,9 +61,14 @@ class StartPage:
         """Return True if the timer for the given player is increasing."""
         timer_element = self.get_player_timer_element(name)
         initial_time = timer_element.inner_text()
-        print(f"[DEBUG] Initial time for {name}: {initial_time}")
         time.sleep(1.5)
         updated_time = timer_element.inner_text()
-        print(f"[DEBUG] Updated time for {name}: {updated_time}")
         return initial_time != updated_time
+
+    def get_pause_button(self):
+        """Return pause button"""
+        self.page.get_by_role("button").get_by_text("Pausa").click()
+
+    def is_game_paused(self):
+        return self.page.locator(".game-paused").is_visible()
 
