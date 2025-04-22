@@ -28,27 +28,22 @@ def step_when_start_your_move_button(context):
 
 @then(u'timern för "{name}" börjar räkna')
 def step_then_timer_starts_for_player(context, name):
-    assert context.start_page.is_timer_running_for_player(name), f"Timern för {name} har inte börjat räkna"
+    is_running = context.start_page.is_timer_running_for_player(name)
+    print(f"[DEBUG] Timer for {name} is running: {is_running}")
+    assert is_running, f"Timern för {name} har inte börjat räkna"
 
 @then(u'knappen visar texten "Överlämna till {name}"')
-def step_impl(context,name):
+def step_then_show_text(context,name):
     button = context.start_page.get_active_move_button()
     expect(button).to_have_text(f"Överlämna till {name}", timeout=1000)
+
 
 @given(u'spelaren "Ana" har påbörjat sin tur')
 def step_given_player_start_turn(context):
     setup_game_with_players(context)
     context.start_page.start_your_move()
 
-@when(u'spelaren klickar på knappen "Överlämna till {name}"')
-def step_when_player_clicks_give_turn_to(context, name):
-    button = context.start_page.get_active_move_button()
-    button.click()
 
-#TODO
-@then(u'timern för "{name}" slutar räkna')
-def step_then_timer_stops_for_player(context, name):
-    assert not context.start_page.is_timer_running_for_player(name), f"Timern för {name} räknar fortfarande!"
 
 
 

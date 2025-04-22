@@ -1,5 +1,6 @@
 import re
 import time
+from playwright.sync_api import expect
 
 class StartPage:
     def __init__(self, page):
@@ -45,6 +46,12 @@ class StartPage:
         """Return the button used to start/hand over the move (its text changes)."""
         return self.page.get_by_role("button", name=re.compile(r"Börja ditt drag|Överlämna till .+"))
 
+    def click_active_move_button(self, expected_text):
+        """Click the button only if it matches the expected text."""
+        button = self.get_active_move_button()
+        expect(button).to_have_text(expected_text)
+        button.click()
+
     def get_player_timer_element(self, name):
         """Return the <code> element (timer) for the player with the given name."""
         player_section = self.page.locator("section.large", has_text=name)
@@ -54,7 +61,9 @@ class StartPage:
         """Return True if the timer for the given player is increasing."""
         timer_element = self.get_player_timer_element(name)
         initial_time = timer_element.inner_text()
+        print(f"[DEBUG] Initial time for {name}: {initial_time}")
         time.sleep(1.5)
         updated_time = timer_element.inner_text()
+        print(f"[DEBUG] Updated time for {name}: {updated_time}")
         return initial_time != updated_time
 
