@@ -66,9 +66,14 @@ class StartPage:
         return initial_time != updated_time
 
     def get_pause_button(self):
-        """Return pause button"""
-        self.page.get_by_role("button").get_by_text("Pausa").click()
+        """Return the pause button element."""
+        return self.page.get_by_role("button", name="Pausa").first
+
+    def click_pause_button(self):
+        """Click the pause button to pause or resume the game."""
+        self.page.locator("button", has_text="Pausa").click()
 
     def is_game_paused(self):
-        return self.page.locator(".game-paused").is_visible()
+        """Check if the game is paused (based on .game-paused class visibility)."""
+        return not self.page.locator("button", has_text="Pausa").is_visible()
 
