@@ -30,19 +30,38 @@ Users can add player names, start timers for moves, and interact with the game t
 git clone <your-repo-url>
 cd <repo-folder>
 
----
-## Create and activate a virtual environment:
+```
+
+### 2. Create and activate a virtual environment
+
+**Windows:**
+
+```powershell
 python -m venv .venv
-# On Windows
 .venv\Scripts\activate
-# On macOS/Linux
+```
+
+**macOS/Linux:**
+
+```bash
+python -m venv .venv
 source .venv/bin/activate
----
+```
 ## Install dependencies:
 pip install -r requirements.txt
 playwright install
 ---
 ## Running Tests
-python -m behave
 
+### Unit tests
+
+```bash
+python -m pytest tests/
+```
+
+### BDD tests
+
+```bash
+behave features/
+```
 

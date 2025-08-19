@@ -1,0 +1,29 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# Playwright browsers
+playwright/.local-browsers/
+
+# VS Code settings
+.vscode/
+
+# Pytest cache
+.pytest_cache/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
